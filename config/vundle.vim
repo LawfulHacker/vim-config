@@ -24,6 +24,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'python-mode/python-mode'
 Plugin 'itchyny/lightline.vim'
+Plugin 'sheerun/vim-polyglot'
 
 call vundle#end()
 
