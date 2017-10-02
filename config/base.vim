@@ -54,6 +54,10 @@ set number
 " Always wrap long lines:
 set wrap
 
+" Always show whitespace characters
+set list
+set listchars=eol:¬,tab:»·,trail:~,extends:>,precedes:<,space:␣
+
 " Height of the command bar
 set cmdheight=1
 
