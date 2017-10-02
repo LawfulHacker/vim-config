@@ -24,6 +24,7 @@ let g:lightline = {
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
+      \              [ 'buffer' ],
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component': {
@@ -32,6 +33,7 @@ let g:lightline = {
       \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
       \ },
       \ 'component_function': {
+      \   'buffer': 'LightlineBuffer',
       \   'fileencoding': 'LightlineFileEncoding',
       \   'fileformat': 'LightlineFileFormat',
       \   'filetype': 'LightlineFileType',
@@ -45,16 +47,20 @@ let g:lightline = {
       \ 'subseparator': { 'left': ' ', 'right': ' ' }
       \ }
 
+function! LightlineBuffer()
+    return bufnr('%')
+endfunction
+
 function! LightlineFileEncoding()
-  return winwidth(0) > 70 ? &fileencoding : ''
+    return winwidth(0) > 70 ? &fileencoding : ''
 endfunction
 
 function! LightlineFileFormat()
-  return winwidth(0) > 70 ? &fileformat : ''
+    return winwidth(0) > 70 ? &fileformat : ''
 endfunction
 
 function! LightlineFileType()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
