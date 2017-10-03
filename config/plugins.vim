@@ -29,7 +29,7 @@ let g:lightline = {
       \ },
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"":&readonly?"⛔ ":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"✎ ":&modifiable?"":"-"}',
       \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
       \ },
       \ 'component_function': {
