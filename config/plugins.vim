@@ -81,7 +81,8 @@ endfunction
 
 autocmd User YcmLocationOpened call s:CustomizeYcmLocationWindow()
 
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -139,6 +140,16 @@ set diffopt+=vertical
 
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_completion = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Javascript VIM
+"
+
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

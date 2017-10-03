@@ -59,7 +59,7 @@ set wrap
 
 " Always show whitespace characters
 set list
-set listchars=eol:¬,tab:▸⸳,trail:~,extends:>,precedes:<,space:⸱
+set listchars=eol:¬,tab:▸⸱,trail:~,extends:>,precedes:<,space:⸱
 
 " Height of the command bar
 set cmdheight=1
@@ -210,8 +210,11 @@ try
 catch
 endtry
 
-" Return to last edit position when opening files (You want this!)
+" Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Start with file unfolded
+au BufRead * normal zR
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

@@ -21,12 +21,15 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'Valloric/YouCompleteMe', { 'for': 'javascript' }
 Plugin 'itchyny/lightline.vim'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'Valloric/YouCompleteMe'
 
-Plugin 'python-mode/python-mode'
-Plugin 'davidhalter/jedi-vim', { 'for': 'python' }
+" Python specific plugins
+Plugin 'python-mode/python-mode', { 'for': 'python' }
+
+" Javascript specific plugins
+Plugin 'pangloss/vim-javascript', { 'for': 'javascript' }
 
 call vundle#end()
 
