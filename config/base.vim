@@ -45,6 +45,9 @@ else
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
 
+" Always show current line
+set cursorline
+
 " Always show current position
 set ruler
 
@@ -56,7 +59,7 @@ set wrap
 
 " Always show whitespace characters
 set list
-set listchars=eol:¬,tab:»·,trail:~,extends:>,precedes:<,space:␣
+set listchars=eol:¬,tab:▸⸳,trail:~,extends:>,precedes:<,space:⸱
 
 " Height of the command bar
 set cmdheight=1
