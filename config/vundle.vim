@@ -31,6 +31,9 @@ Plugin 'python-mode/python-mode', { 'for': 'python' }
 " Javascript specific plugins
 Plugin 'pangloss/vim-javascript', { 'for': 'javascript' }
 
+" Sass
+Plugin 'gcorne/vim-sass-lint'
+
 call vundle#end()
 
 filetype plugin indent on

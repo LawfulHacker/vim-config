@@ -122,6 +122,9 @@ autocmd FileType javascript let b:syntastic_javascript_jscs_args =
     \ get(g:, 'syntastic_javascript_jscs_args', '') .
     \ FindConfig('-c', '.jscsrc', expand('<afile>:p:h', 1))
 
+let g:syntastic_sass_checkers=["sasslint"]
+let g:syntastic_scss_checkers=["sasslint"]
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -140,6 +143,8 @@ set diffopt+=vertical
 
 let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_completion = 0
+
+let g:pymode_python = 'python3'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
