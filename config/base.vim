@@ -53,6 +53,7 @@ set ruler
 
 " Always show line numbers
 set number
+set relativenumber
 
 " Always wrap long lines:
 set wrap
