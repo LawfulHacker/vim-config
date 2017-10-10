@@ -135,7 +135,7 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 " Remove trailing whitespace for some filetypes
-autocmd FileType c,cpp,java,javascript,php,python autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,css,java,javascript,php,python,sass,scss autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
@@ -175,14 +175,17 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
 " Move lines
 execute "set <A-j>=\ej"
 execute "set <A-k>=\ek"
 
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
