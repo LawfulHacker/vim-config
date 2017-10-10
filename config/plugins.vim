@@ -30,7 +30,7 @@ let g:lightline = {
       \ 'component': {
       \   'readonly': '%{&filetype=="help"?"":&readonly?"⛔ ":""}',
       \   'modified': '%{&filetype=="help"?"":&modified?"✎ ":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \   'fugitive': '%{exists("*fugitive#head")? "" . fugitive#head():""}'
       \ },
       \ 'component_function': {
       \   'buffer': 'LightlineBuffer',
@@ -43,7 +43,7 @@ let g:lightline = {
       \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
       \ },
-      \ 'separator': { 'left': ' ', 'right': ' ' },
+      \ 'separator': { 'left': '', 'right': ' ' },
       \ 'subseparator': { 'left': ' ', 'right': ' ' }
       \ }
 
