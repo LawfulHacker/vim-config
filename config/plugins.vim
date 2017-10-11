@@ -28,9 +28,9 @@ let g:lightline = {
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"⛔ ":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"✎ ":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")? "" . fugitive#head():""}'
+      \   'readonly': '%{&filetype == "help" ? "" : &readonly ? "" : ""}',
+      \   'modified': '%{&filetype == "help" ? "" : &modified ? "" : &modifiable ? "" : "-"}',
+      \   'fugitive': '%{exists("*fugitive#head") ? "" . fugitive#head() : ""}'
       \ },
       \ 'component_function': {
       \   'buffer': 'LightlineBuffer',
@@ -39,12 +39,12 @@ let g:lightline = {
       \   'filetype': 'LightlineFileType',
       \ },
       \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \   'readonly': '(&filetype != "help" && &readonly)',
+      \   'modified': '(&filetype != "help" && (&modified || !&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && "" != fugitive#head())'
       \ },
-      \ 'separator': { 'left': '', 'right': ' ' },
-      \ 'subseparator': { 'left': ' ', 'right': ' ' }
+      \ 'separator': { 'left': "", 'right': "" },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 function! LightlineBuffer()
@@ -56,11 +56,11 @@ function! LightlineFileEncoding()
 endfunction
 
 function! LightlineFileFormat()
-    return winwidth(0) > 70 ? &fileformat : ''
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
 
 function! LightlineFileType()
-    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return winwidth(0) > 70 ? (&filetype !=# '' ? (&filetype . ' ' . WebDevIconsGetFileTypeSymbol()) : 'no ft') : ''
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
