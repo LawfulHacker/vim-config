@@ -41,7 +41,7 @@ if has("gui_running")
     elseif has("gui_macvim")
         set guifont=Menlo\ Regular:h14
     elseif has("gui_win32")
-        set guifont=Droid_Sans_Mono_Slashed_for_Pow:h11:cANSI:qDRAFT
+        set guifont=SourceCodePro_NF:h11:cANSI:qDRAFT
     endif
 
     " Use system clipboard
@@ -53,6 +53,11 @@ if has("gui_running")
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove right-hand scroll bar
     set guioptions-=L  "remove left-hand scroll bar
+endif
+
+if has("nvim")
+    set clipboard=unnamed
+    call GuiFont("SourceCodePro NF:h11:cANSI:qDRAFT")
 endif
 
 " Set 7 lines to the cursor - when moving vertically using j/k
@@ -76,7 +81,7 @@ set ruler
 set number
 set relativenumber
 
-" Always wrap long lines:
+" Always wrap long line
 set wrap
 
 " Always show whitespace characters
@@ -134,7 +139,9 @@ set foldcolumn=1
 "
 
 " 256-color terminal
-set t_Co=256
+if !has("gui_running")
+    set t_Co=256
+endif
 
 " Enable syntax highlighting
 syntax enable 
@@ -205,8 +212,10 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 " Move lines
-execute "set <A-j>=\ej"
-execute "set <A-k>=\ek"
+if !has("nvim")
+    execute "set <A-j>=\ej"
+    execute "set <A-k>=\ek"
+endif
 
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==

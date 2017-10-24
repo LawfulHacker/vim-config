@@ -19,14 +19,14 @@ Plugin 'vim-scripts/bufexplorer.zip'
 Plugin 'tpope/vim-fugitive'
 Plugin 'terryma/vim-expand-region'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-syntastic/syntastic'
+" Plugin 'vim-syntastic/syntastic'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'sbdchd/neoformat'
-
+Plugin 'w0rp/ale'
 " Python specific plugins
 Plugin 'python-mode/python-mode', { 'for': 'python' }
 
