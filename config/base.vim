@@ -133,6 +133,9 @@ set foldcolumn=1
 " Theme and colors
 "
 
+" 256-color terminal
+set t_Co=256
+
 " Enable syntax highlighting
 syntax enable 
 set background=dark
