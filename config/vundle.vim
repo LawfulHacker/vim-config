@@ -25,6 +25,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'sbdchd/neoformat'
 
 " Python specific plugins
 Plugin 'python-mode/python-mode', { 'for': 'python' }
