@@ -37,7 +37,7 @@ command W w !sudo tee % > /dev/null
 if has("gui_running")
     " Use a better font
     if has("gui_gtk2")
-        set guifont=Inconsolata\ 12
+        set guifont=DroidSansMono\ NF\ 10
     elseif has("gui_macvim")
         set guifont=Menlo\ Regular:h14
     elseif has("gui_win32")
@@ -48,11 +48,11 @@ if has("gui_running")
     set clipboard=unnamed
 
     " Hide menu and toolbar
-    set guioptions-=M  "remove menu bar
-    set guioptions-=m  "remove menu bar
-    set guioptions-=T  "remove toolbar
-    set guioptions-=r  "remove right-hand scroll bar
-    set guioptions-=L  "remove left-hand scroll bar
+    " set guioptions-=M  "remove menu bar
+    " set guioptions-=m  "remove menu bar
+    " set guioptions-=T  "remove toolbar
+    " set guioptions-=r  "remove right-hand scroll bar
+    " set guioptions-=L  "remove left-hand scroll bar
 endif
 
 if has("nvim")
