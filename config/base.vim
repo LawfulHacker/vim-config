@@ -23,7 +23,7 @@ nmap <leader>w :w!<cr>
 " Fast quit
 nmap <leader>q :q<cr>
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
 
@@ -48,11 +48,11 @@ if has("gui_running")
     set clipboard=unnamed
 
     " Hide menu and toolbar
-    " set guioptions-=M  "remove menu bar
-    " set guioptions-=m  "remove menu bar
-    " set guioptions-=T  "remove toolbar
-    " set guioptions-=r  "remove right-hand scroll bar
-    " set guioptions-=L  "remove left-hand scroll bar
+    set guioptions-=M  "remove menu bar
+    set guioptions-=m  "remove menu bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand scroll bar
+    set guioptions-=L  "remove left-hand scroll bar
 endif
 
 if has("nvim")
@@ -101,23 +101,23 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch 
+set incsearch
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw 
+set lazyredraw
 
 " For regular expressions turn magic on
 set magic
 
 " Show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
 
 " How many tenths of a second to blink when matching brackets
 set mat=2
@@ -144,7 +144,7 @@ if !has("gui_running")
 endif
 
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 set background=dark
 
 try
@@ -166,7 +166,7 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 " Remove trailing whitespace for some filetypes
-autocmd FileType c,cpp,css,java,javascript,php,python,sass,scss autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType bash,c,cpp,css,java,javascript,json,php,python,sass,scss,vim autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
@@ -212,7 +212,7 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 " Move lines
-if !has("nvim")
+if !has("gui_running")
     execute "set <A-j>=\ej"
     execute "set <A-k>=\ek"
 endif
@@ -235,7 +235,7 @@ map <leader>h :bprevious<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
+map <leader>tm :tabmove
 map <leader>t<leader> :tabnext<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
@@ -251,7 +251,7 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2

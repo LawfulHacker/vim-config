@@ -1,4 +1,42 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Install Plugins
+"
+call plug#begin('~/.vim/plugged')
+
+" Themes
+Plug 'itchyny/landscape.vim'
+
+" Plugins
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/bufexplorer.zip'
+Plug 'tpope/vim-fugitive'
+Plug 'terryma/vim-expand-region'
+Plug 'ctrlpvim/ctrlp.vim'
+" Plugin 'vim-syntastic/syntastic'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer' }
+Plug 'ryanoasis/vim-devicons'
+Plug 'sbdchd/neoformat'
+Plug 'w0rp/ale'
+Plug 'ruanyl/coverage.vim'
+" Python specific plugins
+Plug 'python-mode/python-mode', { 'for': 'python' }
+
+" Javascript specific plugins
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+
+" Sass
+Plug 'gcorne/vim-sass-lint'
+
+call plug#end()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+filetype plugin indent on
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NerdTree
 "
 
