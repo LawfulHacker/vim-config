@@ -23,6 +23,10 @@ Plug 'sbdchd/neoformat'
 Plug 'w0rp/ale'
 Plug 'ruanyl/coverage.vim'
 
+Plug 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/TaskList.vim'
+Plug 'fholgado/minibufexpl.vim'
+
 " Python specific plugins
 Plug 'python-mode/python-mode', { 'for': 'python' }
 
