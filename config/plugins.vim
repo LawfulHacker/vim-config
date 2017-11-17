@@ -13,15 +13,16 @@ Plug 'vim-scripts/bufexplorer.zip'
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-expand-region'
 Plug 'ctrlpvim/ctrlp.vim'
-" Plugin 'vim-syntastic/syntastic'
+Plug 'janko-m/vim-test'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python3.6 ./install.py --clang-completer --tern-completer' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'sbdchd/neoformat'
 Plug 'w0rp/ale'
 Plug 'ruanyl/coverage.vim'
+
 " Python specific plugins
 Plug 'python-mode/python-mode', { 'for': 'python' }
 
@@ -29,170 +30,8 @@ Plug 'python-mode/python-mode', { 'for': 'python' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
 " Sass
-Plug 'gcorne/vim-sass-lint'
+Plug 'gcorne/vim-sass-lint', { 'for': 'sass' }
 
 call plug#end()
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-filetype plugin indent on
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NerdTree
-"
-
-map <C-n> :NERDTreeToggle<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" lightline
-"
-
-set noshowmode
-set laststatus=2
-
-" Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
-let g:lightline = {
-      \ 'colorscheme': 'landscape',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste'],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'buffer' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype == "help" ? "" : &readonly ? "" : ""}',
-      \   'modified': '%{&filetype == "help" ? "" : &modified ? "" : &modifiable ? "" : "-"}',
-      \   'fugitive': '%{exists("*fugitive#head") ? "" . fugitive#head() : ""}'
-      \ },
-      \ 'component_function': {
-      \   'buffer': 'LightlineBuffer',
-      \   'fileencoding': 'LightlineFileEncoding',
-      \   'fileformat': 'LightlineFileFormat',
-      \   'filetype': 'LightlineFileType',
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype != "help" && &readonly)',
-      \   'modified': '(&filetype != "help" && (&modified || !&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && "" != fugitive#head())'
-      \ },
-      \ 'separator': { 'left': "", 'right': "" },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
-
-function! LightlineBuffer()
-    return bufnr('%')
-endfunction
-
-function! LightlineFileEncoding()
-    return winwidth(0) > 70 ? &fileencoding : ''
-endfunction
-
-function! LightlineFileFormat()
-    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
-
-function! LightlineFileType()
-    return winwidth(0) > 70 ? (&filetype !=# '' ? (&filetype . ' ' . WebDevIconsGetFileTypeSymbol()) : 'no ft') : ''
-endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YouCompleteMe
-"
-
-function! s:CustomizeYcmLocationWindow()
-    " Move the window to the top of the screen.
-    wincmd K
-    " Set the window height to 5.
-    5wincmd _ 
-    " Switch back to working window.
-    wincmd p
-endfunction
-
-autocmd User YcmLocationOpened call s:CustomizeYcmLocationWindow()
-
-nnoremap <leader>gd :YcmCompleter GoTo<CR>
-nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlP
-"
-
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules)$',
-    \ 'file': '\v\.(exe|so|dll)$',
-    \ 'link': 'some_bad_symbolic_links',
-    \ }
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntastic
-"
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-function! FindConfig(prefix, what, where)
-    let cfg = findfile(a:what, escape(a:where, ' ') . ';')
-    return cfg !=# '' ? ' ' . a:prefix . ' ' . shellescape(cfg) : ''
-endfunction
-
-autocmd FileType javascript let b:syntastic_javascript_jscs_args =
-    \ get(g:, 'syntastic_javascript_jscs_args', '') .
-    \ FindConfig('-c', '.jscsrc', expand('<afile>:p:h', 1))
-
-let g:syntastic_sass_checkers=["sasslint"]
-let g:syntastic_scss_checkers=["sasslint"]
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fugitive
-"
-
-set diffopt+=vertical
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python Mode
-"
-
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_completion = 0
-
-let g:pymode_python = 'python3'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Javascript VIM
-"
-
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
