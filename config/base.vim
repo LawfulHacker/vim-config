@@ -301,5 +301,5 @@ function! LoadSession()
 endfunction
 
 " Adding automatons for when entering or leaving Vim
-au VimEnter * nested :call LoadSession()
-au VimLeave * :call MakeSession()
+" au VimEnter * nested :call LoadSession()
+" au VimLeave * :call MakeSession()

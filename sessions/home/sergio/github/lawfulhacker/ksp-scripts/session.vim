@@ -73,7 +73,7 @@ nnoremap <silent> <Plug>(ctrlp) :CtrlP
 xnoremap <silent> <Plug>(expand_region_shrink) :call expand_region#next('v', '-')
 xnoremap <silent> <Plug>(expand_region_expand) :call expand_region#next('v', '+')
 nnoremap <silent> <Plug>(expand_region_expand) :call expand_region#next('n', '+')
-nnoremap <SNR>53_: :=v:count ? v:count : ''
+nnoremap <SNR>52_: :=v:count ? v:count : ''
 nnoremap <silent> <Plug>GitGutterPreviewHunk :GitGutterPreviewHunk
 nnoremap <silent> <Plug>GitGutterUndoHunk :GitGutterUndoHunk
 nnoremap <silent> <Plug>GitGutterStageHunk :GitGutterStageHunk
@@ -122,9 +122,11 @@ set lazyredraw
 set listchars=eol:¬¨,tab:‚ñ∏‚∏±,trail:~,extends:>,precedes:<,space:‚∏±
 set matchtime=2
 set mouse=a
+set report=10000
 set ruler
-set runtimepath=~/.vim,~/.vim/plugged/landscape.vim/,~/.vim/plugged/vim-gitgutter/,~/.vim/plugged/nerdtree/,~/.vim/plugged/bufexplorer.zip/,~/.vim/plugged/vim-fugitive/,~/.vim/plugged/vim-expand-region/,~/.vim/plugged/ctrlp.vim/,~/.vim/plugged/vim-test/,~/.vim/plugged/editorconfig-vim/,~/.vim/plugged/lightline.vim/,~/.vim/plugged/vim-polyglot/,~/.vim/plugged/YouCompleteMe/,~/.vim/plugged/vim-devicons/,~/.vim/plugged/neoformat/,~/.vim/plugged/ale/,~/.vim/plugged/coverage.vim/,~/.vim/plugged/taglist.vim/,~/.vim/plugged/TaskList.vim/,~/.vim/plugged/minibufexpl.vim/,/usr/share/vim/vimfiles,/usr/share/vim/vim80,/usr/share/vim/vimfiles/after,~/.vim/plugged/vim-polyglot/after,~/.vim/plugged/ale/after,~/.vim/after
+set runtimepath=~/.vim,~/.vim/plugged/landscape.vim/,~/.vim/plugged/vim-gitgutter/,~/.vim/plugged/nerdtree/,~/.vim/plugged/bufexplorer.zip/,~/.vim/plugged/vim-fugitive/,~/.vim/plugged/vim-expand-region/,~/.vim/plugged/ctrlp.vim/,~/.vim/plugged/vim-test/,~/.vim/plugged/editorconfig-vim/,~/.vim/plugged/lightline.vim/,~/.vim/plugged/vim-polyglot/,~/.vim/plugged/YouCompleteMe/,~/.vim/plugged/vim-devicons/,~/.vim/plugged/neoformat/,~/.vim/plugged/ale/,~/.vim/plugged/coverage.vim/,~/.vim/plugged/taglist.vim/,~/.vim/plugged/TaskList.vim/,~/.vim/plugged/minibufexpl.vim/,~/.vim/plugged/python-mode/,/usr/share/vim/vimfiles,/usr/share/vim/vim80,/usr/share/vim/vimfiles/after,~/.vim/plugged/vim-polyglot/after,~/.vim/plugged/ale/after,~/.vim/plugged/python-mode/after,~/.vim/after
 set scrolloff=7
+set shiftround
 set shiftwidth=4
 set shortmess=filnxtToOc
 set showmatch
@@ -144,45 +146,79 @@ set undodir=~/.vim_runtime/temp_dirs/undodir
 set undofile
 set updatetime=1500
 set whichwrap=b,s,<,>,h,l
-set wildignore=*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,*/plugged/*
+set wildignore=*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set window=44
 set nowritebackup
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/.vim
+cd ~/github/lawfulhacker/ksp-scripts
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +28 config/plugins.vim
-badd +24 config/plugin-config.vim
-badd +1 ftplugin/python.vim
-badd +304 config/base.vim
+badd +27 user-interface.py
+badd +38 docking-guidance.py
+badd +1 main.py
+badd +1 SubOrbitalFlight.py
+badd +23 suborbital-flight.py
 argglobal
 silent! argdel *
-$argadd config/plugins.vim
-$argadd config/plugin-config.vim
-edit config/plugin-config.vim
+edit user-interface.py
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
 argglobal
-if bufexists('config/plugin-config.vim') | buffer config/plugin-config.vim | else | edit config/plugin-config.vim | endif
-vnoremap <buffer> <silent> [" :exe "normal! gv"|call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
-nnoremap <buffer> <silent> [" :call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
-vnoremap <buffer> <silent> [] m':exe "normal! gv"|call search('^\s*endf*\%[unction]\>', "bW")
-nnoremap <buffer> <silent> [] m':call search('^\s*endf*\%[unction]\>', "bW")
-vnoremap <buffer> <silent> [[ m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "bW")
-nnoremap <buffer> <silent> [[ m':call search('^\s*fu\%[nction]\>', "bW")
-vnoremap <buffer> <silent> ]" :exe "normal! gv"|call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
-nnoremap <buffer> <silent> ]" :call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
-vnoremap <buffer> <silent> ][ m':exe "normal! gv"|call search('^\s*endf*\%[unction]\>', "W")
-nnoremap <buffer> <silent> ][ m':call search('^\s*endf*\%[unction]\>', "W")
-vnoremap <buffer> <silent> ]] m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "W")
-nnoremap <buffer> <silent> ]] m':call search('^\s*fu\%[nction]\>', "W")
+noremap <buffer> <silent> ra :PymodeRopeAutoImport
+noremap <buffer> <silent> r1p :call pymode#rope#module_to_package()
+noremap <buffer> <silent> rnc :call pymode#rope#generate_class()
+noremap <buffer> <silent> rnp :call pymode#rope#generate_package()
+noremap <buffer> <silent> rnf :call pymode#rope#generate_function()
+noremap <buffer> <silent> ru :call pymode#rope#use_function()
+noremap <buffer> <silent> rs :call pymode#rope#signature()
+noremap <buffer> <silent> rv :call pymode#rope#move()
+noremap <buffer> <silent> ri :call pymode#rope#inline()
+vnoremap <buffer> <silent> rl :call pymode#rope#extract_variable()
+vnoremap <buffer> <silent> rm :call pymode#rope#extract_method()
+noremap <buffer> <silent> r1r :call pymode#rope#rename_module()
+noremap <buffer> <silent> rr :call pymode#rope#rename()
+noremap <buffer> <silent> ro :call pymode#rope#organize_imports()
+noremap <buffer> <silent> f :call pymode#rope#find_it()
+noremap <buffer> <silent> d :call pymode#rope#show_doc()
+noremap <buffer> <silent> g :call pymode#rope#goto_definition()
+nnoremap <buffer> <silent> ,b :call pymode#breakpoint#operate(line('.'))
+vnoremap <buffer> <silent> ,r :PymodeRun
+nnoremap <buffer> <silent> ,r :PymodeRun
+onoremap <buffer> C :call pymode#motion#select('^\s*class\s', 0)
+vnoremap <buffer> <silent> K :call pymode#doc#show(@*)
+nnoremap <buffer> <silent> K :call pymode#doc#find()
+onoremap <buffer> M :call pymode#motion#select('^\s*def\s', 0)
+vnoremap <buffer> [M :call pymode#motion#vmove('^\s*def\s', 'b')
+onoremap <buffer> [M :call pymode#motion#move('^\s*def\s', 'b')
+onoremap <buffer> [C :call pymode#motion#move('\v^(class|def)\s', 'b')
+nnoremap <buffer> [M :call pymode#motion#move('^\s*def\s', 'b')
+nnoremap <buffer> [C :call pymode#motion#move('\v^(class|def)\s', 'b')
+vnoremap <buffer> [[ :call pymode#motion#vmove('\v^(class|def)\s', 'b')
+onoremap <buffer> [[ :call pymode#motion#move('\v^(class|def)\s', 'b')
+nnoremap <buffer> [[ :call pymode#motion#move('\v^(class|def)\s', 'b')
+vnoremap <buffer> ]M :call pymode#motion#vmove('^\s*def\s', '')
+onoremap <buffer> ]M :call pymode#motion#move('^\s*def\s', '')
+onoremap <buffer> ]C :call pymode#motion#move('\v^(class|def)\s', '')
+nnoremap <buffer> ]M :call pymode#motion#move('^\s*def\s', '')
+nnoremap <buffer> ]C :call pymode#motion#move('\v^(class|def)\s', '')
+vnoremap <buffer> ]] :call pymode#motion#vmove('\v^(class|def)\s', '')
+onoremap <buffer> ]] :call pymode#motion#move('\v^(class|def)\s', '')
+nnoremap <buffer> ]] :call pymode#motion#move('\v^(class|def)\s', '')
+vnoremap <buffer> aM :call pymode#motion#select('^\s*def\s', 0)
+onoremap <buffer> aM :call pymode#motion#select('^\s*def\s', 0)
+vnoremap <buffer> aC :call pymode#motion#select('^\s*class\s', 0)
+onoremap <buffer> aC :call pymode#motion#select('^\s*class\s', 0)
+vnoremap <buffer> iM :call pymode#motion#select('^\s*def\s', 1)
+onoremap <buffer> iM :call pymode#motion#select('^\s*def\s', 1)
+vnoremap <buffer> iC :call pymode#motion#select('^\s*class\s', 1)
+onoremap <buffer> iC :call pymode#motion#select('^\s*class\s', 1)
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -195,12 +231,12 @@ setlocal bufhidden=
 setlocal buflisted
 setlocal buftype=
 setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",:\"
-setlocal commentstring=\"%s
+setlocal colorcolumn=+1
+setlocal comments=b:#,fb:-
+setlocal commentstring=#%s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -211,48 +247,49 @@ setlocal nocursorbind
 setlocal nocursorcolumn
 set cursorline
 setlocal cursorline
-setlocal define=
+setlocal define=^s*\\(def\\|class\\)
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
-setlocal errorformat=
+setlocal errorformat=%E%f:%l:\ could\ not\ compile,%-Z%p^,%A%f:%l:%c:\ %t%n\ %m,%A%f:%l:\ %t%n\ %m,%+GTraceback%.%#,%E\ \ File\ \"%f\"\\,\ line\ %l\\,%m%\\C,%E\ \ File\ \"%f\"\\,\ line\ %l%\\C,%C%p^,%+C\ \ \ \ %.%#,%+C\ \ %.%#,%Z%\\S%\\&%m,%-G%.%#
 setlocal expandtab
-if &filetype != 'vim'
-setlocal filetype=vim
+if &filetype != 'python'
+setlocal filetype=python
 endif
 setlocal fixendofline
 set foldcolumn=1
 setlocal foldcolumn=1
 setlocal foldenable
-setlocal foldexpr=0
+setlocal foldexpr=pymode#folding#expr(v:lnum)
 setlocal foldignore=#
 setlocal foldlevel=0
 setlocal foldmarker={{{,}}}
-setlocal foldmethod=manual
+set foldmethod=syntax
+setlocal foldmethod=expr
 setlocal foldminlines=1
 setlocal foldnestmax=20
-setlocal foldtext=foldtext()
+setlocal foldtext=pymode#folding#text()
 setlocal formatexpr=
-setlocal formatoptions=croql
+setlocal formatoptions=cq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=-1
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=GetVimIndent()
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,=end,=else,=cat,=fina,=END,0\\
+setlocal include=^\\s*\\(from\\|import\\)
+setlocal includeexpr=substitute(v:fname,'\\.','/','g')
+setlocal indentexpr=pymode#indent#get_indent(v:lnum)
+setlocal indentkeys=!^F,o,O,<:>,0),0],0},=elif,=except
 setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255,#
-setlocal keywordprg=
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=pydoc
 setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
 set list
 setlocal list
 setlocal makeencoding=
-setlocal makeprg=
+setlocal makeprg=python
 setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
@@ -260,7 +297,7 @@ setlocal nrformats=bin,octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=
+setlocal omnifunc=pythoncomplete#Complete
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -275,37 +312,36 @@ setlocal shiftwidth=4
 setlocal noshortname
 setlocal signcolumn=auto
 setlocal smartindent
-setlocal softtabstop=0
+setlocal softtabstop=4
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
 setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#mode()}\ %)%{(&paste)?\"ÓÉÅ\":\"\"}%(\ %{&paste?\"PASTE\":\"\"}\ %)%#LightlineLeft_active_0_1#ÓÉÄ%#LightlineLeft_active_1#%(\ %{exists(\"*fugitive#head\")\ ?\ \"Ôêò\"\ .\ fugitive#head()\ :\ \"\"}\ %)%{((exists(\"*fugitive#head\")\ &&\ \"\"\ !=\ fugitive#head()))&&(((&filetype\ !=\ \"help\"\ &&\ &readonly))||1||((&filetype\ !=\ \"help\"\ &&\ (&modified\ ||\ !&modifiable))))?\"ÓÉÅ\":\"\"}%(\ %{&filetype\ ==\ \"help\"\ ?\ \"\"\ :\ &readonly\ ?\ \"ÓÇ¢\"\ :\ \"\"}\ %)%{((&filetype\ !=\ \"help\"\ &&\ &readonly))&&(1||((&filetype\ !=\ \"help\"\ &&\ (&modified\ ||\ !&modifiable))))?\"ÓÉÅ\":\"\"}%(\ %t\ %)%{((&filetype\ !=\ \"help\"\ &&\ (&modified\ ||\ !&modifiable)))?\"ÓÉÅ\":\"\"}%(\ %{&filetype\ ==\ \"help\"\ ?\ \"\"\ :\ &modified\ ?\ \"ÔÅÄ\"\ :\ &modifiable\ ?\ \"\"\ :\ \"-\"}\ %)%#LightlineLeft_active_1_2#ÓÉÄ%#LightlineMiddle_active#%=%#LightlineRight_active_3_4#ÓÉÇ%#LightlineRight_active_3#%(\ %{LightlineFileFormat()}\ %)%{LightlineFileFormat()!=#\"\"&&(LightlineFileEncoding()!=#\"\"||LightlineFileType()!=#\"\")?\"ÓÉÉ\":\"\"}%(\ %{LightlineFileEncoding()}\ %)%{LightlineFileEncoding()!=#\"\"&&(LightlineFileType()!=#\"\")?\"ÓÉÉ\":\"\"}%(\ %{LightlineFileType()}\ %)%#LightlineRight_active_2_3#ÓÉÇ%#LightlineRight_active_2#%(\ %{LightlineBuffer()}\ %)%#LightlineRight_active_1_2#ÓÉÇ%#LightlineRight_active_1#%(\ %3p%%\ %)%#LightlineRight_active_0_1#ÓÉÇ%#LightlineRight_active_0#%(\ %3l:%-2v\ %)
-setlocal suffixesadd=
+setlocal suffixesadd=.py
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'vim'
-setlocal syntax=vim
+if &syntax != 'python'
+setlocal syntax=python
 endif
 setlocal tabstop=4
 setlocal tagcase=
 setlocal tags=
 setlocal termkey=
 setlocal termsize=
-setlocal textwidth=78
+setlocal textwidth=80
 setlocal thesaurus=
 setlocal undofile
 setlocal undolevels=-123456
 setlocal nowinfixheight
 setlocal nowinfixwidth
-setlocal wrap
+setlocal nowrap
 setlocal wrapmargin=0
-silent! normal! zE
-let s:l = 24 - ((21 * winheight(0) + 21) / 43)
+let s:l = 27 - ((21 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-24
+27
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
