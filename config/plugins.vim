@@ -33,6 +33,9 @@ Plug 'python-mode/python-mode', { 'for': 'python' }
 " Javascript specific plugins
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
+" Css
+Plug 'ap/vim-css-color'
+
 " Sass
 Plug 'gcorne/vim-sass-lint', { 'for': 'sass' }
 
