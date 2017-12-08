@@ -25,9 +25,9 @@ endif
 
 " Load configuration
 source ~/.vim/config/plugins.vim
-source ~/.vim/config/plugin-config.vim
-source ~/.vim/config/functions.vim
 source ~/.vim/config/base.vim
+source ~/.vim/config/functions.vim
+source ~/.vim/config/plugin-config.vim
 
 try
 source ~/.vim/user.vim

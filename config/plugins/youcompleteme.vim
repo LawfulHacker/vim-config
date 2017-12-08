@@ -13,7 +13,7 @@ endfunction
 
 autocmd User YcmLocationOpened call s:CustomizeYcmLocationWindow()
 
-nnoremap <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
