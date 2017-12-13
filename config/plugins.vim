@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'itchyny/landscape.vim'
 
 " Plugins
+Plug 'google/vim-maktaba'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/bufexplorer.zip'

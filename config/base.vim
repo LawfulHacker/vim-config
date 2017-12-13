@@ -316,7 +316,15 @@ endfunction
 "
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
+
 function! s:RunShellCommand(cmdline)
+  function! RunShellCommandHandler(result)
+    botright new
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+    call append(0, split(a:result.stdout, '\n'))
+    setlocal nomodifiable
+  endfunction
+
   echo a:cmdline
   let expanded_cmdline = a:cmdline
   for part in split(a:cmdline, ' ')
@@ -325,13 +333,9 @@ function! s:RunShellCommand(cmdline)
         let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
      endif
   endfor
-  botright new
-  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-  call setline(1, 'You entered:    ' . a:cmdline)
-  call setline(2, 'Expanded Form:  ' .expanded_cmdline)
-  call setline(3,substitute(getline(2),'.','=','g'))
-  execute '$read !'. expanded_cmdline
-  setlocal nomodifiable
+  let cmd = maktaba#syscall#Create(expanded_cmdline)
+  call cmd.CallAsync('RunShellCommandHandler', 1)
+  " execute '$read !'. expanded_cmdline
   1
 endfunction
 
