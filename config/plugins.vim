@@ -18,6 +18,8 @@ Plug 'janko-m/vim-test'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'Valloric/YouCompleteMe', { 'do': 'python3.6 ./install.py --clang-completer --tern-completer' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'sbdchd/neoformat'

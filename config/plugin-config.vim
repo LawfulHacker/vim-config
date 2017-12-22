@@ -1,6 +1,7 @@
 source ~/.vim/config/plugins/ctrlp.vim
 source ~/.vim/config/plugins/lightline.vim
 source ~/.vim/config/plugins/syntastic.vim
+source ~/.vim/config/plugins/ultisnips.vim
 source ~/.vim/config/plugins/youcompleteme.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
