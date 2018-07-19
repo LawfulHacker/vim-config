@@ -41,7 +41,7 @@ if has("gui_running")
     elseif has("gui_macvim")
         set guifont=Menlo\ Regular:h14
     elseif has("gui_win32")
-        set guifont=SourceCodePro_NF:h11:cANSI:qDRAFT
+        set guifont=Inconsolata_NF:h11:cANSI:qDRAFT
     endif
 
     " Use system clipboard
